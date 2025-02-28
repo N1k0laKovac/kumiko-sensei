@@ -1,5 +1,5 @@
-let BASE_API_URL = '/api/kumiko-sensei/';
-let BASE_VOCAL_URL = '/vocals-hex/';
+let BASE_API_URL = 'https://sensei.kyoani.cn/api/kumiko-sensei/';
+let BASE_VOCAL_URL = 'https://sensei.kyoani.cn/vocals-hex/';
 
 if(/31.2/.test(location.origin)) {
     const host = location.origin.replace(/\d+$/,'');
