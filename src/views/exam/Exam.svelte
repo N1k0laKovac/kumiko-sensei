@@ -14,15 +14,19 @@ let exam = null;
 let status = 'hello';
 let results = [];
 let started = null;
-const startExam = async () => {
+
+// 开始考试（支持正常）
+const startExam = async() => {
     status = 'loading';
     exam = await createExam();
     status = 'loading';
+    
     currentQuizIndex = 0;
     status = 'exam';
     results = [];
     started = getUnixTimestamp();
     ended = null;
+};
 };
 
 
@@ -39,8 +43,8 @@ $: progress = status ==='result' ? 1 : currentQuizIndex / 10;
 let ended = null;
 let usedMs = 0;
 
-// 考试结束
-const examOver = () => {
+// 处理考试结束
+const examOver = async () => {
     ended = getUnixTimestamp();
     usedMs = ended - started;
     status = 'result';

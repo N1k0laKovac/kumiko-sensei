@@ -103,14 +103,18 @@ export let results = [];
         dispatch('new-round');
     };
 
-$: resultTitle = (() => {
-    if(score === 10) return '当之无愧的京吹大师！';
-    if(score >= 8) return '京吹上手！';
-    if(score >= 6) return '还行吧。';
-    if(score >= 4) return '京吹初心者。';
-    if(score >= 2) return '京吹小白。';
-    return '八嘎！';
-})();
+    $: resultTitle = (() => {
+        if(score === 10) return '当之无愧的京吹大师！';
+        if(score >= 8) return '京吹上手！';
+        if(score >= 6) return '还行吧。';
+        if(score >= 4) return '京吹初心者。';
+        if(score >= 2) return '京吹小白。';
+        return '八嘎！';
+    })();
+
+    const handleNewRound = () => {
+        dispatch('new-round');
+    };
 </script>
 
 {#if exam}
@@ -119,7 +123,6 @@ $: resultTitle = (() => {
         <div style="padding: 10px;">
             <h1>{resultTitle}</h1>
             <p>共 {exam.quizs.length} 题，正确率 {results.filter(v=>v).length / 10 * 100}%</p>
-            <!-- <p>{JSON.stringify(results)}</p> -->
             <p>获得 {score} 分</p>
         </div>
         <div style="padding: 20px 0 10;">
