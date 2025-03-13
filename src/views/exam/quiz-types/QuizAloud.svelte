@@ -8,7 +8,6 @@
     export let quiz = null;
     export let onOver;
     export let onSkip;
- 
     let currentSelectIndex = null;
 
     const onCheck = () => {

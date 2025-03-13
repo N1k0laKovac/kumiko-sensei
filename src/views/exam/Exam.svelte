@@ -14,7 +14,7 @@ let exam = null;
 let status = 'hello';
 let results = [];
 let started = null;
-const startExam = async() => {
+const startExam = async () => {
     status = 'loading';
     exam = await createExam();
     status = 'loading';
@@ -23,7 +23,7 @@ const startExam = async() => {
     results = [];
     started = getUnixTimestamp();
     ended = null;
-};
+}
 
 
 $: currentQuiz = (()=> {
