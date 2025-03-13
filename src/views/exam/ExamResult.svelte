@@ -5,13 +5,13 @@ import { createEventDispatcher } from 'svelte';
 export let score = 10;
 export let exam = null;
 export let results = [];
-           let scores = [];
 
     const DB_NAME = 'QuizScoresDB';
     const STORE_NAME = 'scores';
     const DB_VERSION = 1;
     const dispatch = createEventDispatcher();
 
+    let scores = [];
     // DB相关
     function initDB() {
         return new Promise((resolve, reject) => {
@@ -99,9 +99,6 @@ export let results = [];
         saveScore();
     }
 
-    const handleNewRound = () => {
-        dispatch('new-round');
-    };
 
 $: resultTitle = (() => {
     if(score === 10) return '当之无愧的京吹大师！';
@@ -111,6 +108,10 @@ $: resultTitle = (() => {
     if(score >= 2) return '京吹小白。';
     return '八嘎！';
 })();
+
+    const handleNewRound = () => {
+        dispatch('new-round');
+    };
 </script>
 
 {#if exam}
@@ -119,17 +120,15 @@ $: resultTitle = (() => {
         <div style="padding: 10px;">
             <h1>{resultTitle}</h1>
             <p>共 {exam.quizs.length} 题，正确率 {results.filter(v=>v).length / 10 * 100}%</p>
-            <!-- <p>{JSON.stringify(results)}</p> -->
             <p>获得 {score} 分</p>
         </div>
         <div style="padding: 20px 0 10;">
-            <a href="#/" class="ui-btn" data-key="Enter">回首页</a>
             <button class="ui-btn" on:click={handleNewRound}>开始新一轮</button>
         </div>
     </div>
 
     <!-- 历史分数 -->
- <div class="score-history">
+    <div class="score-history">
         <h2>历史分数</h2>
         <div class="score-list">
             <ul>
@@ -147,6 +146,7 @@ $: resultTitle = (() => {
                 </ul>
         </div>
         {/if}
+        <a href="#/" class="ui-btn" data-key="Enter">回首页</a>
         <button class="ui-btn" on:click={clearScores}>清除历史记录</button>
     </div>
     <div class="join">
