@@ -10,7 +10,7 @@ export default defineConfig({
 	plugins: [svelte()],
 	server: {
 		open: true,
-		host: '127.0.0.1',
+		host: '192.168.31.2',
 		port: 5176,
 	},
 	build: {
