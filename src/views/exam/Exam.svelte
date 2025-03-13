@@ -14,7 +14,7 @@ let exam = null;
 let status = 'hello';
 let results = [];
 let started = null;
-const startExam = async () => {
+const startExam = async() => {
     status = 'loading';
     exam = await createExam();
     status = 'loading';
@@ -40,7 +40,7 @@ let ended = null;
 let usedMs = 0;
 
 // 考试结束
-const examOver = () => {
+const examOver = async () => {
     ended = getUnixTimestamp();
     usedMs = ended - started;
     status = 'result';
@@ -54,6 +54,14 @@ const examOver = () => {
         usedMs,
     });
     endExam(exam);
+}
+
+const handleNewRound = () => {
+    currentQuizIndex = -1;
+    score = 0;
+    results = [];
+    status = 'exam';
+    startExam(); 
 }
 
 const nextQuiz = () => {
@@ -145,7 +153,8 @@ playAudioByVid(getOne(['7/1965c','f/0c92d']));
     </div>
     {/if}
     {:else if status === 'result'}
-    <ExamResult score={score} results={results} exam={exam}/>
+    <ExamResult score={score} results={results} exam={exam} 
+    on:new-round={handleNewRound} />
     <!-- {:else} -->
     {/if}
 </div>
