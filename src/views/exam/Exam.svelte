@@ -25,7 +25,6 @@ const startExam = async() => {
     started = getUnixTimestamp();
     ended = null;
 };
-};
 
 
 $: currentQuiz = (()=> {
