@@ -14,7 +14,7 @@ let exam = null;
 let status = 'hello';
 let results = [];
 let started = null;
-const startExam = async () => {
+const startExam = async() => {
     status = 'loading';
     exam = await createExam();
     status = 'loading';
@@ -39,8 +39,8 @@ $: progress = status ==='result' ? 1 : currentQuizIndex / 10;
 let ended = null;
 let usedMs = 0;
 
-// 考试结束
-const examOver = () => {
+// 处理考试结束
+const examOver = async () => {
     ended = getUnixTimestamp();
     usedMs = ended - started;
     status = 'result';
