@@ -23,7 +23,7 @@ const startExam = async () => {
     results = [];
     started = getUnixTimestamp();
     ended = null;
-}
+};
 
 
 $: currentQuiz = (()=> {
@@ -54,6 +54,14 @@ const examOver = () => {
         usedMs,
     });
     endExam(exam);
+}
+
+const handleNewRound = () => {
+    currentQuizIndex = -1;
+    score = 0;
+    results = [];
+    status = 'exam';
+    startExam(); 
 }
 
 const nextQuiz = () => {
@@ -145,7 +153,8 @@ playAudioByVid(getOne(['7/1965c','f/0c92d']));
     </div>
     {/if}
     {:else if status === 'result'}
-    <ExamResult score={score} results={results} exam={exam}/>
+    <ExamResult score={score} results={results} exam={exam} 
+    on:new-round={handleNewRound} />
     <!-- {:else} -->
     {/if}
 </div>
