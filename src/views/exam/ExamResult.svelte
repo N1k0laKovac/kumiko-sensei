@@ -103,14 +103,18 @@ export let results = [];
         dispatch('new-round');
     };
 
-$: resultTitle = (() => {
-    if(score === 10) return '当之无愧的京吹大师！';
-    if(score >= 8) return '京吹上手！';
-    if(score >= 6) return '还行吧。';
-    if(score >= 4) return '京吹初心者。';
-    if(score >= 2) return '京吹小白。';
-    return '八嘎！';
-})();
+    $: resultTitle = (() => {
+        if(score === 10) return '当之无愧的京吹大师！';
+        if(score >= 8) return '京吹上手！';
+        if(score >= 6) return '还行吧。';
+        if(score >= 4) return '京吹初心者。';
+        if(score >= 2) return '京吹小白。';
+        return '八嘎！';
+    })();
+
+    const handleNewRound = () => {
+        dispatch('new-round');
+    };
 </script>
 
 {#if exam}

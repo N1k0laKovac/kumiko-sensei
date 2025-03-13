@@ -18,11 +18,13 @@ const startExam = async() => {
     status = 'loading';
     exam = await createExam();
     status = 'loading';
+    
     currentQuizIndex = 0;
     status = 'exam';
     results = [];
     started = getUnixTimestamp();
     ended = null;
+};
 };
 
 
